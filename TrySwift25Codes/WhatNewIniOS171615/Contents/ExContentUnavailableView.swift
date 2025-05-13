@@ -1,5 +1,5 @@
 //
-//  iOS17_ContentUnavailableView.swift
+//  ExContentUnavailableView.swift
 //  TrySwift25Codes
 //
 //  Created by k_terada on 2025/04/22.
@@ -8,10 +8,12 @@
 import SwiftUI
 import Observation
 
-// https://youtu.be/qY09lmDo7GU?list=PLCl5NM4qD3u_Azg7gKw5CK_DqSLeb4QMY&t=616
+struct ExContentUnavailableView: View, ListCellPresentable {
+    let title = "[iOS17] ContentUnavailableView"
+    let description = "コンテンツがない場合に表示するView"
+    let url = "https://youtu.be/qY09lmDo7GU?list=PLCl5NM4qD3u_Azg7gKw5CK_DqSLeb4QMY&t=616"
 
-struct iOS17_ContentUnavailableView: View {
-    @State private var viewModel = ContactsViewModel()
+    @State private var viewModel = ViewModel()
 
     var body: some View {
         NavigationStack {
@@ -24,7 +26,6 @@ struct iOS17_ContentUnavailableView: View {
                     }
                 }
             }
-            .navigationTitle("サーチボタンでランダムに結果を返します")
             .searchable(text: $viewModel.searchText)
             .overlay {
                 if viewModel.searchResults.isEmpty {
@@ -36,11 +37,12 @@ struct iOS17_ContentUnavailableView: View {
                 viewModel.search()
             }
         }
+        .navigationTitle("サーチボタンでランダムに結果を返します")
     }
 }
 
 @Observable
-class ContactsViewModel {
+private class ViewModel {
     var searchResults: [String] = []
     var searchText: String = ""
     
@@ -53,7 +55,7 @@ class ContactsViewModel {
     }
 }
 
-struct ContactsView: View {
+private struct ContactsView: View {
     let contact: String
     var body: some View {
         Text(contact)

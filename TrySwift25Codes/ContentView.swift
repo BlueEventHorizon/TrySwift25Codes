@@ -11,17 +11,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
-                    NavigationLink(destination: WhatNewIniOS171615()) {
-                        HStack {
-                            Text("iOS 17, 16, 15などの新機能")
-                                .font(.headline)
-                            Image(systemName: "arrow.right.circle")
-                        }
-                        .padding()
+                VStack(spacing: 8) {
+                    let presentation1 = WhatNewIniOS171615View()
+                    NavigationLink(destination: presentation1) {
+                        ListCell(header: presentation1)
                     }
                 }
+                .padding(20)
             }
+            .navigationTitle("Try! Swift 2025 サンプルソースコード")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
